@@ -72,6 +72,7 @@ app.post("/deploy/login", function (req, res) {
       res.send(json);
     }
   } catch (error) {
+    console.log(error);
     res.sendStatus(404);
   }
 });
@@ -114,11 +115,13 @@ app.get("/deploy/builds", function (req, res) {
           };
           res.send(json);
         } else {
+          console.log(error);
           res.sendStatus(404);
         }
       }
     );
   } catch (error) {
+    console.log(error);
     res.sendStatus(404);
   }
 });
@@ -162,11 +165,13 @@ app.post("/deploy/builds", function (req, res) {
           };
           res.send(json);
         } else {
+          console.log(error);
           res.sendStatus(404);
         }
       }
     );
   } catch (error) {
+    console.log(error);
     res.sendStatus(404);
   }
 });
@@ -208,11 +213,13 @@ app.post("/deploy/artefacts/download", function (req, res) {
           };
           res.send(json);
         } else {
+          console.log(error);
           res.sendStatus(404);
         }
       }
     );
   } catch (error) {
+    console.log(error);
     res.sendStatus(404);
   }
 });
