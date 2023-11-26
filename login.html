@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FreeWallet Deploy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link href="/js/bootstrap.min.js" />
+  </head>
+  <body>
+    <form
+      id="login-form"
+      class="mt-5 m-auto"
+      style="max-width: 480px"
+      action="javascript:login()"
+    >
+      <div class="row g-3">
+        <div class="col-12">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            placeholder="Enter username"
+          />
+        </div>
+
+        <div class="col-12">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">
+            <div
+              id="loading"
+              class="spinner-border spinner-border-sm text-white"
+              role="status"
+              hidden
+            ></div>
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </body>
+
+  <script type="text/javascript">
+    function login() {
+      var loading = document.getElementById("loading");
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      loading.hidden = false;
+      var apiUrl = "/deploy/login";
+      fetch(apiUrl, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({ username: username, password: password }),
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // Work with JSON data here
+          var error = data.error;
+          var errorMessage = data.errorMessage;
+          if (error === 0) {
+            var token = data.data;
+            localStorage.setItem("token", token);
+            window.location.href = "/deploy";
+          } else {
+            window.alert(errorMessage);
+          }
+        })
+        .catch((err) => {
+          // Do something for an error here
+        })
+        .finally(() => {
+          loading.hidden = true;
+        });
+    }
+  </script>
+</html>
