@@ -19,6 +19,12 @@
             class="btn btn-outline-primary"
             onclick="buildIOS()"
           >
+            <div
+              id="loading-ios"
+              class="spinner-border spinner-border-sm"
+              role="status"
+              hidden
+            ></div>
             Build iOS
           </button>
         </div>
@@ -28,6 +34,12 @@
             class="btn btn-outline-info"
             onclick="buildAndroid()"
           >
+            <div
+              id="loading-android"
+              class="spinner-border spinner-border-sm"
+              role="status"
+              hidden
+            ></div>
             Build Android
           </button>
         </div>
@@ -143,6 +155,9 @@
     }
 
     function buildIOS() {
+      var loading = document.getElementById("loading-ios");
+      loading.hidden = false;
+
       var apiUrl = "/deploy/builds";
       fetch(apiUrl, {
         headers: {
@@ -160,10 +175,15 @@
         })
         .catch((err) => {
           // Do something for an error here
+          loading.hidden = true;
+          window.alert("Build iOS Failed.");
         });
     }
 
     function buildAndroid() {
+      var loading = document.getElementById("loading-android");
+      loading.hidden = false;
+
       var apiUrl = "/deploy/builds";
       fetch(apiUrl, {
         headers: {
@@ -181,6 +201,8 @@
         })
         .catch((err) => {
           // Do something for an error here
+          loading.hidden = true;
+          window.alert("Build Andorid Failed.");
         });
     }
   </script>
