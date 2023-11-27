@@ -15,13 +15,21 @@ app.use(express.static(__dirname + "/public"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
 
+var simpleRequestLogger = (proxyServer, options) => {
+  proxyServer.on("proxyReq", (proxyReq, req, res) => {
+    console.log(`[HPM] [${req.method}] ${req.url}`); // outputs: [HPM] GET /users
+  });
+};
+
 var apiProxy1 = createProxyMiddleware("/tp-usercore/v1", {
   target: "http://111.230.206.174:8001",
   changeOrigin: true,
+  plugins: [simpleRequestLogger],
 });
 var apiProxy2 = createProxyMiddleware("/tp-trancore/v1", {
   target: "http://111.230.206.174:8002",
   changeOrigin: true,
+  plugins: [simpleRequestLogger],
 });
 app.use(apiProxy1);
 app.use(apiProxy2);
