@@ -28,14 +28,14 @@ app.use(apiProxy2);
 
 app.get("/deploy", function (req, res) {
   var accessToken = req.cookies.token;
-  if (!accessToken) res.redirect("/deploy/login");
+  if (!accessToken) return res.redirect("/deploy/login");
 
   try {
     var decoded = jwt.verify(accessToken, process.env.TOKEN_SECRET);
-    if (!decoded.admin) res.redirect("/deploy/login");
+    if (!decoded.admin) return res.redirect("/deploy/login");
     res.sendFile(__dirname + "/index.html");
   } catch (error) {
-    res.redirect("/deploy/login");
+    return res.redirect("/deploy/login");
   }
 });
 
