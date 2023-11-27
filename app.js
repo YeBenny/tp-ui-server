@@ -28,14 +28,14 @@ app.use(apiProxy2);
 
 app.get("/deploy", function (req, res) {
   var accessToken = req.cookies.token;
-  if (!accessToken) return res.redirect("/deploy/login");
+  if (!accessToken) res.redirect("/deploy/login");
 
   try {
     var decoded = jwt.verify(accessToken, process.env.TOKEN_SECRET);
-    if (!decoded.admin) return res.redirect("/deploy/login");
+    if (!decoded.admin) res.redirect("/deploy/login");
     res.sendFile(__dirname + "/index.html");
   } catch (error) {
-    return res.redirect("/deploy/login");
+    res.redirect("/deploy/login");
   }
 });
 
@@ -79,20 +79,13 @@ app.post("/deploy/login", function (req, res) {
 
 app.get("/deploy/builds", function (req, res) {
   var accessToken = req.cookies.token;
-  if (!accessToken) {
-    res.sendStatus(401);
-    return res.redirect("/deploy/login");
-  }
+  if (!accessToken) return res.sendStatus(401);
 
   try {
     var decoded = jwt.verify(accessToken, process.env.TOKEN_SECRET);
-    if (!decoded.admin) {
-      res.sendStatus(401);
-      return res.redirect("/deploy/login");
-    }
+    if (!decoded.admin) return res.sendStatus(401);
   } catch (error) {
-    res.sendStatus(401);
-    return res.redirect("/deploy/login");
+    return res.sendStatus(401);
   }
 
   try {
@@ -135,20 +128,13 @@ app.get("/deploy/builds", function (req, res) {
 
 app.post("/deploy/builds", function (req, res) {
   var accessToken = req.cookies.token;
-  if (!accessToken) {
-    res.sendStatus(401);
-    return res.redirect("/deploy/login");
-  }
+  if (!accessToken) return res.sendStatus(401);
 
   try {
     var decoded = jwt.verify(accessToken, process.env.TOKEN_SECRET);
-    if (!decoded.admin) {
-      res.sendStatus(401);
-      return res.redirect("/deploy/login");
-    }
+    if (!decoded.admin) return res.sendStatus(401);
   } catch (error) {
-    res.sendStatus(401);
-    return res.redirect("/deploy/login");
+    return res.sendStatus(401);
   }
 
   try {
@@ -192,20 +178,13 @@ app.post("/deploy/builds", function (req, res) {
 
 app.post("/deploy/artefacts/download", function (req, res) {
   var accessToken = req.cookies.token;
-  if (!accessToken) {
-    res.sendStatus(401);
-    return res.redirect("/deploy/login");
-  }
+  if (!accessToken) return res.sendStatus(401);
 
   try {
     var decoded = jwt.verify(accessToken, process.env.TOKEN_SECRET);
-    if (!decoded.admin) {
-      res.sendStatus(401);
-      return res.redirect("/deploy/login");
-    }
+    if (!decoded.admin) return res.sendStatus(401);
   } catch (error) {
-    res.sendStatus(401);
-    return res.redirect("/deploy/login");
+    return res.sendStatus(401);
   }
 
   try {
