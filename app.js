@@ -8,9 +8,6 @@ require("dotenv").config();
 
 var app = express();
 
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
@@ -33,6 +30,10 @@ var apiProxy2 = createProxyMiddleware("/tp-trancore/v1", {
 });
 app.use(apiProxy1);
 app.use(apiProxy2);
+
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/deploy", function (req, res) {
   var accessToken = req.cookies.token;
