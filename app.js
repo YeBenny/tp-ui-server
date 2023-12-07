@@ -1,6 +1,7 @@
 var express = require("express");
 var request = require("request");
 var cookieParser = require("cookie-parser");
+var timeout = require('connect-timeout')
 var jwt = require("jsonwebtoken");
 var { createProxyMiddleware } = require("http-proxy-middleware");
 
@@ -31,6 +32,7 @@ var apiProxy2 = createProxyMiddleware("/tp-trancore/v1", {
 app.use(apiProxy1);
 app.use(apiProxy2);
 
+app.use(timeout('5s'));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -97,7 +99,6 @@ app.get("/deploy/builds", function (req, res) {
     return res.sendStatus(401);
   }
 
-  req.setTimeout(20000);
   try {
     var token = process.env.CODEMAGIC_TOKEN;
     var appId = process.env.CODEMAGIC_APPID;
@@ -147,7 +148,6 @@ app.post("/deploy/builds", function (req, res) {
     return res.sendStatus(401);
   }
 
-  req.setTimeout(20000);
   try {
     var token = process.env.CODEMAGIC_TOKEN;
     var appId = process.env.CODEMAGIC_APPID;
@@ -198,7 +198,6 @@ app.post("/deploy/artefacts/download", function (req, res) {
     return res.sendStatus(401);
   }
 
-  req.setTimeout(20000);
   try {
     var token = process.env.CODEMAGIC_TOKEN;
     var headers = {
