@@ -97,6 +97,7 @@ app.get("/deploy/builds", function (req, res) {
     return res.sendStatus(401);
   }
 
+  req.setTimeout(20000);
   try {
     var token = process.env.CODEMAGIC_TOKEN;
     var appId = process.env.CODEMAGIC_APPID;
@@ -146,6 +147,7 @@ app.post("/deploy/builds", function (req, res) {
     return res.sendStatus(401);
   }
 
+  req.setTimeout(20000);
   try {
     var token = process.env.CODEMAGIC_TOKEN;
     var appId = process.env.CODEMAGIC_APPID;
@@ -196,6 +198,7 @@ app.post("/deploy/artefacts/download", function (req, res) {
     return res.sendStatus(401);
   }
 
+  req.setTimeout(20000);
   try {
     var token = process.env.CODEMAGIC_TOKEN;
     var headers = {
