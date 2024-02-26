@@ -29,8 +29,14 @@ var apiProxy2 = createProxyMiddleware("/tp-trancore/v1", {
   changeOrigin: true,
   plugins: [simpleRequestLogger],
 });
+var apiProxy1 = createProxyMiddleware("/tp-asset-service/v1", {
+  target: "http://111.230.206.174:8003",
+  changeOrigin: true,
+  plugins: [simpleRequestLogger],
+});
 app.use(apiProxy1);
 app.use(apiProxy2);
+app.use(apiProxy3);
 
 app.use(timeout('5s'));
 app.use(cookieParser());
