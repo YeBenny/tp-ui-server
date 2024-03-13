@@ -1,7 +1,7 @@
 var express = require("express");
 var request = require("request");
 var cookieParser = require("cookie-parser");
-var timeout = require('connect-timeout')
+var timeout = require("connect-timeout");
 var jwt = require("jsonwebtoken");
 var { createProxyMiddleware } = require("http-proxy-middleware");
 
@@ -12,6 +12,7 @@ var app = express();
 app.use(express.static(__dirname + "/public"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
+app.use("/assets", express.static(__dirname + "/assets"));
 
 var simpleRequestLogger = (proxyServer, options) => {
   proxyServer.on("proxyReq", (proxyReq, req, res) => {
@@ -38,10 +39,14 @@ app.use(apiProxy1);
 app.use(apiProxy2);
 app.use(apiProxy3);
 
-app.use(timeout('5s'));
+app.use(timeout("5s"));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/home", function (_, res) {
+  res.sendFile(__dirname + "/home.html");
+});
 
 app.get("/deploy", function (req, res) {
   var accessToken = req.cookies.token;
