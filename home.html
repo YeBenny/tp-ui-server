@@ -23,7 +23,7 @@
           <div class="d-flex justify-content-center">
             <div class="app-icon-container">
               <img
-                src="./assets/img/logo.png"
+                src="/assets/img/logo.png"
                 class="app-icon-image" />
             </div>
           </div>
@@ -45,7 +45,7 @@
       body {
         margin: 0;
         padding: 0;
-        background-image: url("./assets/img/background.png"); /* Replace 'dorayaki_background.jpg' with the path to your image */
+        background-image: url("/assets/img/background.png"); /* Replace 'dorayaki_background.jpg' with the path to your image */
         background-size: cover; /* Cover the entire viewport */
         background-position: center; /* Center the image */
         color: #ffffff; /* Optional: Set text color */
@@ -81,7 +81,7 @@
       var downloadButtons = document.getElementById("downloadButtons");
       if (isAndroid) {
         downloadButtons.innerHTML =
-          '<a href="./assets/apks/app-release.apk" class="btn btn-primary">Download for Android</a>';
+          '<a href="/assets/apks/app-release.apk" class="btn btn-primary">Download for Android</a>';
       } else if (isIOS) {
         downloadButtons.innerHTML =
           '<a href="https://testflight.apple.com/join/3Unhm6DD" class="btn btn-primary">Download for iOS</a>';
