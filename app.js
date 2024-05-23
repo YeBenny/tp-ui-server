@@ -247,6 +247,6 @@ app.post("/deploy/artefacts/download", function (req, res) {
   }
 });
 
-app.listen(443, function () {
-  console.log("Web server listening on port 3000");
+app.listen(80, function () {
+  console.log("Web server listening on port 80");
 });
