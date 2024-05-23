@@ -6,6 +6,17 @@
         "appID": "KC5B75AFJF.com.dorayaki",
         "paths": [
           "*"
+        ],
+        "appIDs": [
+          "KC5B75AFJF.com.dorayaki"
+        ],
+        "components": [
+          {
+            "/": "/*"
+          },
+          {
+            "/": "*"
+          }
         ]
       }
     ]
