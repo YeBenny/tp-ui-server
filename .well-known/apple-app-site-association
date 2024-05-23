@@ -3,12 +3,12 @@
     "apps": [],
     "details": [
       {
-        "appID": "KC5B75AFJF.com.dorayaki",
+        "appID": "DR27MN95P7.com.dorayaki",
         "paths": [
           "*"
         ],
         "appIDs": [
-          "KC5B75AFJF.com.dorayaki"
+          "DR27MN95P7.com.dorayaki"
         ],
         "components": [
           {
@@ -23,7 +23,7 @@
   },
   "webcredentials": {
     "apps": [
-      "KC5B75AFJF.com.dorayaki"
+      "DR27MN95P7.com.dorayaki"
     ]
   }
 }
