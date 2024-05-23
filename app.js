@@ -1,5 +1,7 @@
 var express = require("express");
 var request = require("request");
+let fs = require("fs");
+var https = require("https");
 var cookieParser = require("cookie-parser");
 var timeout = require("connect-timeout");
 var jwt = require("jsonwebtoken");
@@ -247,6 +249,14 @@ app.post("/deploy/artefacts/download", function (req, res) {
   }
 });
 
-app.listen(80, function () {
-  console.log("Web server listening on port 80");
-});
+https
+  .createServer(
+    {
+      key: fs.readFileSync(__dirname + "/certs/yebenny.cn.key"),
+      cert: fs.readFileSync(__dirname + "/certs/yebenny.cn.crt"),
+    },
+    app
+  )
+  .listen(443, function () {
+    console.log("Web server listening on port 80");
+  });
