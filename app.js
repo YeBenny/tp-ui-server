@@ -13,6 +13,7 @@ app.use(express.static(__dirname + "/public"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
 app.use("/assets", express.static(__dirname + "/assets"));
+app.use("/.well-known", express.static(__dirname + "/.well-known"));
 
 var simpleRequestLogger = (proxyServer, options) => {
   proxyServer.on("proxyReq", (proxyReq, req, res) => {
@@ -246,6 +247,6 @@ app.post("/deploy/artefacts/download", function (req, res) {
   }
 });
 
-app.listen(3000, function () {
+app.listen(443, function () {
   console.log("Web server listening on port 3000");
 });
