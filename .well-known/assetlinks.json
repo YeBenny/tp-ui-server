@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.dorayaki",
       "sha256_cert_fingerprints": [
-        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+        "2B:EE:9A:1E:B7:01:87:DC:E5:F4:26:F3:E5:51:37:3D:C0:6E:B9:74:CF:38:22:66:F7:81:DC:BB:79:3F:6A:EA"
       ]
     }
   }
