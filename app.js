@@ -258,5 +258,5 @@ https
     app
   )
   .listen(443, function () {
-    console.log("Web server listening on port 80");
+    console.log("Web server listening on port 443");
   });
